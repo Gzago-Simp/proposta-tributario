@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soluções em Direito Tributário | ZAGO & MESQUITA ADVOGADOS</title>
+    
+    <!-- Chosen Palette: Warm Neutrals with Professional Blue and Gold Accent -->
+    <!-- Application Structure Plan: A single-page, user-centric journey. Starts with a clear value proposition (Hero), moves to interactive exploration of core services (Solutions Tabs), visualizes the firm's process (Interactive Methodology Timeline), builds trust with key differentiators and an illustrative benefit simulator (Why Us & Simulator), and ends with a clear call to action (Contact). This structure guides the user from problem awareness to solution confidence, making a dense proposal digestible and engaging, which is more effective for client conversion than a linear document. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Work Methodology -> Goal: Organize/Inform -> Viz: Interactive vertical timeline (HTML/CSS/JS). Interaction: Click to expand steps. Justification: Transforms a list into an engaging, easy-to-follow process, enhancing clarity and transparency. Method: HTML/CSS with JS for toggling visibility.
+        - Report Info: Service Descriptions -> Goal: Inform/Organize -> Viz: Tabbed content sections (HTML/CSS/JS). Interaction: Click tabs to switch content. Justification: Prevents information overload by allowing users to focus on one service at a time, improving content retention. Method: HTML/CSS with JS for toggling visibility.
+        - Report Info: Potential Savings (Implied) -> Goal: Compare/Engage -> Viz: Interactive Bar Chart (Chart.js). Interaction: User adjusts a slider for debt amount, chart updates instantly. Justification: Provides a tangible, "wow-factor" illustration of the value proposition, making the benefits of a tax transaction concrete and compelling. Library: Chart.js.
+        - Report Info: Differentials -> Goal: Inform -> Viz: Icon-based grid (HTML/CSS). Interaction: Static. Justification: Quickly communicates key strengths in a visually appealing and easily scannable format. Method: Tailwind CSS Grid.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7; /* Warm Neutral */
+            color: #1f2937; /* Tailwind gray-800 */
+        }
+        .accent-bg { background-color: #4d3147; } /* Deep Purple */
+        .accent-text { color: #D4AF37; } /* Gold Accent */
+        .accent-border { border-color: #D4AF37; }
+        .btn-primary {
+            background-color: #D4AF37;
+            color: #1f2937;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #c09b2d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .tab-active {
+            border-bottom: 2px solid #D4AF37;
+            color: #D4AF37;
+        }
+        .tab-inactive {
+            border-bottom: 2px solid transparent;
+            color: #9ca3af; /* gray-400 */
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 1.25rem;
+            left: -0.875rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background-color: #FDFBF7;
+            border: 3px solid #D4AF37;
+            border-radius: 9999px;
+            z-index: 10;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh; /* Responsive height for smaller screens */
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 384px; /* Fixed height for larger screens */
+                max-height: 384px; /* Ensure max-height matches for consistency */
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="accent-bg text-white">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold">ZAGO & MESQUITA ADVOGADOS</div>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="#solucoes" class="hover:accent-text transition-colors">Soluções</a></li>
+                <li><a href="#metodologia" class="hover:accent-text transition-colors">Metodologia</a></li>
+                <li><a href="#diferenciais" class="hover:accent-text transition-colors">Diferenciais</a></li>
+                <li><a href="#contato" class="btn-primary px-4 py-2 rounded-md text-sm font-semibold">Contato</a></li>
+            </ul>
+            <div class="md:hidden">
+                <a href="#contato" class="btn-primary px-4 py-2 rounded-md text-sm font-semibold">Contato</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="accent-bg text-white py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Resolva seus débitos fiscais com <span class="accent-text">estratégia e segurança</span>.</h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-300">Especialistas em Transação Tributária e Defesa em Execução Fiscal, transformamos problemas complexos em soluções eficientes para proteger seu patrimônio.</p>
+                <a href="#solucoes" class="btn-primary px-8 py-4 rounded-lg font-bold text-lg">Conheça Nossas Soluções</a>
+            </div>
+        </section>
+
+        <section id="solucoes" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Nossas Soluções Tributárias</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Oferecemos duas frentes de atuação para regularizar sua situação fiscal e garantir sua tranquilidade. Navegue pelas abas para entender como podemos ajudar.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex justify-center border-b border-gray-200 mb-8">
+                        <button id="tab-transacao" class="tab-btn px-6 py-3 text-lg font-semibold tab-active">Transação Tributária</button>
+                        <button id="tab-defesa" class="tab-btn px-6 py-3 text-lg font-semibold tab-inactive">Defesa em Execução Fiscal</button>
+                    </div>
+
+                    <div id="content-transacao" class="tab-content">
+                        <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+                            <h3 class="text-2xl font-bold mb-4 accent-text">O que é a Transação Tributária?</h3>
+                            <p class="text-gray-700 mb-6">É um acordo com a Fazenda Pública para negociar seus débitos fiscais. Permite obter descontos significativos em juros e multas, além de parcelamentos estendidos, regularizando sua situação de forma vantajosa e planejada.</p>
+                            <h4 class="text-xl font-semibold mb-4 text-gray-800">Nossos serviços incluem:</h4>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start"><span class="accent-text text-xl mr-3">✓</span> Análise completa de elegibilidade para os programas de transação.</li>
+                                <li class="flex items-start"><span class="accent-text text-xl mr-3">✓</span> Simulação de cenários com projeção de descontos e parcelas.</li>
+                                <li class="flex items-start"><span class="accent-text text-xl mr-3">✓</span> Condução de todo o processo de negociação para obter as melhores condições.</li>
+                                <li class="flex items-start"><span class="accent-text text-xl mr-3">✓</span> Acompanhamento do acordo até sua total quitação.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="content-defesa" class="tab-content hidden">
+                         <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+                            <h3 class="text-2xl font-bold mb-4 accent-text">Como funciona a Defesa em Execução Fiscal?</h3>
+                            <p class="text-gray-700 mb-6">Quando a Fazenda Pública entra com uma ação judicial para cobrar uma dívida, atuamos para proteger seus direitos e seu patrimônio. Analisamos o processo em busca de nulidades e irregularidades para suspender ou extinguir a cobrança.</p>
+                            <h4 class="text-xl font-semibold mb-4 text-gray-800">Nossos serviços incluem:</h4>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-start"><span class="accent-text text-xl mr-3">✓</span> Análise rigorosa da Certidão de Dívida Ativa (CDA) em busca de vícios.</li>
+                                <li class="flex items-start"><span class="accent-text text-xl mr-3">✓</span> Elaboração de defesas robustas como Embargos à Execução e Exceção de Pré-Executividade.</li>
+                                <li class="flex items-start"><span class="accent-text text-xl mr-3">✓</span> Atuação para liberar bens e valores penhorados ou bloqueados indevidamente.</li>
+                                <li class="flex items-start"><span class="accent-text text-xl mr-3">✓</span> Interposição de todos os recursos judiciais cabíveis para garantir o melhor resultado.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="metodologia" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Nossa Metodologia de Trabalho</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Seguimos um processo claro e transparente para garantir eficiência e os melhores resultados. Clique em cada etapa para ver os detalhes.</p>
+                </div>
+
+                <div class="max-w-2xl mx-auto">
+                    <div class="relative border-l-2 accent-border ml-4 md:ml-0">
+                        
+                        <div class="timeline-item mb-12 pl-8 cursor-pointer" data-step="1">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">1. Análise e Diagnóstico</h3>
+                            <p class="text-gray-500">O ponto de partida para uma estratégia de sucesso.</p>
+                            <div id="details-1" class="details-content hidden mt-4 text-gray-600 bg-white p-4 rounded-md shadow-sm">
+                                • Coleta de toda a documentação fiscal e processual.<br>
+                                • Avaliação minuciosa da situação para identificar as melhores estratégias.<br>
+                                • Elaboração de parecer técnico com o cenário, riscos e soluções.
+                            </div>
+                        </div>
+
+                        <div class="timeline-item mb-12 pl-8 cursor-pointer" data-step="2">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">2. Definição Estratégica</h3>
+                            <p class="text-gray-500">Planejamento personalizado junto ao cliente.</p>
+                             <div id="details-2" class="details-content hidden mt-4 text-gray-600 bg-white p-4 rounded-md shadow-sm">
+                                • Reunião para apresentar o diagnóstico e discutir as opções.<br>
+                                • Definição do plano de ação mais adequado aos seus objetivos.
+                            </div>
+                        </div>
+
+                        <div class="timeline-item mb-12 pl-8 cursor-pointer" data-step="3">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">3. Execução dos Trabalhos</h3>
+                            <p class="text-gray-500">Atuação proativa na esfera administrativa e judicial.</p>
+                             <div id="details-3" class="details-content hidden mt-4 text-gray-600 bg-white p-4 rounded-md shadow-sm">
+                                • Condução de todos os procedimentos perante os órgãos competentes.<br>
+                                • Negociação ativa para obter as condições mais vantajosas.<br>
+                                • Elaboração e protocolo de todas as peças jurídicas necessárias.
+                            </div>
+                        </div>
+
+                        <div class="timeline-item pl-8 cursor-pointer" data-step="4">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">4. Acompanhamento e Relatórios</h3>
+                            <p class="text-gray-500">Comunicação transparente em todas as fases.</p>
+                             <div id="details-4" class="details-content hidden mt-4 text-gray-600 bg-white p-4 rounded-md shadow-sm">
+                                • Monitoramento constante do andamento dos processos.<br>
+                                • Envio de relatórios periódicos com o status e próximos passos.<br>
+                                • Manutenção de um canal de comunicação sempre aberto.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulador" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Veja o Potencial de Economia</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">Use nosso simulador interativo para ter uma ideia do impacto que uma Transação Tributária pode ter sobre sua dívida. Arraste a barra para ajustar o valor.</p>
+                </div>
+                <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+                    <div class="mb-6">
+                        <label for="debt-slider" class="block text-lg font-semibold text-gray-700 mb-2">Valor Total da Dívida: <span id="debt-value" class="font-bold accent-text">R$ 500.000</span></label>
+                        <input id="debt-slider" type="range" min="50000" max="5000000" value="500000" step="10000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="debtChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4"><strong>Atenção:</strong> Este é um simulador com fins meramente ilustrativos. Os descontos reais dependem da análise do caso concreto e da modalidade de transação aplicável.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="diferenciais" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Por que escolher nosso escritório?</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Combinamos conhecimento técnico e atendimento dedicado para oferecer a melhor solução.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-4xl accent-text mb-4">⚖️</div>
+                        <h3 class="text-xl font-bold mb-2">Alta Especialização</h3>
+                        <p class="text-gray-600">Foco exclusivo em Direito Tributário, garantindo conhecimento aprofundado e estratégias mais eficazes.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-4xl accent-text mb-4">🏆</div>
+                        <h3 class="text-xl font-bold mb-2">Experiência Comprovada</h3>
+                        <p class="text-gray-600">Histórico de sucesso na resolução de passivos fiscais e na defesa dos interesses de nossos clientes.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-4xl accent-text mb-4">🤝</div>
+                        <h3 class="text-xl font-bold mb-2">Atendimento Personalizado</h3>
+                        <p class="text-gray-600">Entendemos as particularidades de cada caso para desenvolver uma estratégia sob medida para você.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-4xl accent-text mb-4">💡</div>
+                        <h3 class="text-xl font-bold mb-2">Tecnologia e Inovação</h3>
+                        <p class="text-gray-600">Utilizamos ferramentas modernas para otimizar a gestão de processos e a comunicação.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-4xl accent-text mb-4">🔍</div>
+                        <h3 class="text-xl font-bold mb-2">Transparência Total</h3>
+                        <p class="text-gray-600">Comunicação clara e constante sobre cada etapa do trabalho e os resultados esperados.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-4xl accent-text mb-4">📈</div>
+                        <h3 class="text-xl font-bold mb-2">Foco em Resultados</h3>
+                        <p class="text-gray-600">Nossa prioridade é alcançar o melhor desfecho possível para sua empresa, com segurança e eficiência.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contato" class="accent-bg text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-4">Dê o primeiro passo para sua regularidade fiscal.</h2>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">Entre em contato conosco para agendarmos uma reunião. Vamos analisar sua situação e apresentar um plano de ação detalhado, sem compromisso.</p>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 text-lg">
+                <span><strong>Email:</strong> contato@zmadvogados.com.br</span>
+                <span><strong>Telefone:</strong> (11) 98128-7229</span>
+            </div>
+            <div class="mt-12">
+                <p class="text-gray-400">ZAGO & MESQUITA ADVOGADOS &copy; 2025</p>
+                <p class="text-sm text-gray-500">Rua Ministro Rodrigo Otávio, 170</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(item => {
+                        item.classList.remove('tab-active');
+                        item.classList.add('tab-inactive');
+                    });
+                    tab.classList.add('tab-active');
+                    tab.classList.remove('tab-inactive');
+
+                    const targetId = 'content-' + tab.id.split('-')[1];
+                    contents.forEach(content => {
+                        if (content.id === targetId) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const step = item.getAttribute('data-step');
+                    const details = document.getElementById(`details-${step}`);
+                    details.classList.toggle('hidden');
+                });
+            });
+
+            const debtSlider = document.getElementById('debt-slider');
+            const debtValue = document.getElementById('debt-value');
+            const ctx = document.getElementById('debtChart').getContext('2d');
+            
+            const formatCurrency = (value) => {
+                return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+            };
+
+            let debtChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Dívida Original', 'Valor Estimado com Transação'],
+                    datasets: [{
+                        label: 'Valor da Dívida',
+                        data: [500000, 150000],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(75, 192, 192, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(75, 192, 192, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    return formatCurrency(value);
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += formatCurrency(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            debtSlider.addEventListener('input', (e) => {
+                const value = parseFloat(e.target.value);
+                debtValue.textContent = formatCurrency(value);
+                
+                const originalDebt = value;
+                const estimatedDiscount = 0.70; 
+                const estimatedFinalValue = originalDebt * (1 - estimatedDiscount);
+
+                debtChart.data.datasets[0].data[0] = originalDebt;
+                debtChart.data.datasets[0].data[1] = estimatedFinalValue;
+                debtChart.update();
+            });
+        });
+    </script>
+</body>
+</html>
